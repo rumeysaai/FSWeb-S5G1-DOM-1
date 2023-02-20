@@ -43,3 +43,73 @@ console.log('Proje açıldı!')
 
 
 /* Kodlar Buradan aşağıya */
+/*------NAV BAR ÇÖZÜM------
+//ÇÖZÜM1
+const navArr =[];
+for(let key in siteContent.nav){
+
+  navArr.push(siteContent.nav[key]);
+}
+for(let i=0; i<navArr.length; i++)
+{
+  document.getElementsByTagName("a")[i].textContent = navArr[i];
+  document.getElementsByTagName("a")[i].classList.add("italic");
+}
+*/
+
+//ÇÖZÜM 2
+const navList = document.querySelectorAll("nav a");
+
+const navArray = navList.forEach((element, index)=>{
+  (element.textContent = siteContent.nav[`nav-item-${index+1}`]);
+});
+
+for(let i=0; i<navList.length; i++)
+{
+  navList[i].textContent = siteContent.nav[`nav-item-${i+1}`];
+}/*
+//ÇÖZÜM 3
+[...navList].map((element, index)=>{
+  navList[index].textContent = siteContent.nav[`nav-item-${i+1}`];
+  navList[index].setAttribute("class","italic");
+});*/
+
+document.getElementById("logo-img").setAttribute("src","http://localhost:9000/img/logo.png" );
+
+document.querySelector("h1").textContent =siteContent.cta.h1;
+document.querySelector("button").textContent =siteContent.cta.button;
+
+document.getElementById("cta-img").setAttribute("src", "http://localhost:9000/img/cta.png"); 
+
+
+const contentArr=[];
+for(let key in siteContent["ana-içerik"])
+{
+  contentArr.push(siteContent["ana-içerik"][key]);
+}
+
+for(let i =0; i<contentArr.length; i++)
+{
+  if(i % 2==0 )
+  {
+    document.getElementsByTagName("h4")[i/2].textContent = contentArr[i];
+  }
+  if(i %2 == 1)
+  {
+    document.getElementsByTagName("p")[Math.floor(i/2)].textContent = contentArr[i];
+  }
+}
+document.querySelector("#middle-img").setAttribute("src", "http://localhost:9000/img/accent.png");
+
+document.getElementsByTagName("h4")[5].textContent = "İletişim";
+document.getElementsByTagName("p")[5].textContent = siteContent.iletisim.adres;
+document.getElementsByTagName("p")[6].textContent = siteContent.iletisim.telefon;
+document.getElementsByTagName("p")[7].textContent = siteContent.iletisim.email;
+
+
+//footer
+const footerList = document.querySelector("footer a");
+for(let i=0; i<footerList.length; i++)
+{
+  footerList[i].textContent = siteContent.footer.copyright;
+}
